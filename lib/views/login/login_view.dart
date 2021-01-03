@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ifood_fake_app/views/login/login_types/login_email_view.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -143,7 +144,14 @@ class _LoginViewState extends State<LoginView> {
                               children: [
                                 buttonWithoutBorder(_width, 0.43, "Celular"),
                                 SizedBox(width: _width * 0.03,),
-                                buttonWithoutBorder(_width, 0.43, "E-mail")
+                                GestureDetector(
+                                    child: buttonWithoutBorder(
+                                        _width, 0.43, "E-mail"
+                                    ),
+                                  onTap: (){
+                                      Navigator.pushNamedAndRemoveUntil(context, 'loginemailview', (route) => false);
+                                  },
+                                )
                               ],
                             ),
                             SizedBox(height: _height * 0.05,),
