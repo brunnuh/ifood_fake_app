@@ -47,6 +47,21 @@ mixin _$LoginEmailController on _LoginEmailController, Store {
     });
   }
 
+  final _$codeAtom = Atom(name: '_LoginEmailController.code');
+
+  @override
+  String get code {
+    _$codeAtom.reportRead();
+    return super.code;
+  }
+
+  @override
+  set code(String value) {
+    _$codeAtom.reportWrite(value, super.code, () {
+      super.code = value;
+    });
+  }
+
   final _$_LoginEmailControllerActionController =
       ActionController(name: '_LoginEmailController');
 
@@ -84,6 +99,28 @@ mixin _$LoginEmailController on _LoginEmailController, Store {
   }
 
   @override
+  void setCode(dynamic value) {
+    final _$actionInfo = _$_LoginEmailControllerActionController.startAction(
+        name: '_LoginEmailController.setCode');
+    try {
+      return super.setCode(value);
+    } finally {
+      _$_LoginEmailControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearCode(TextEditingController controller) {
+    final _$actionInfo = _$_LoginEmailControllerActionController.startAction(
+        name: '_LoginEmailController.clearCode');
+    try {
+      return super.clearCode(controller);
+    } finally {
+      _$_LoginEmailControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void resetState() {
     final _$actionInfo = _$_LoginEmailControllerActionController.startAction(
         name: '_LoginEmailController.resetState');
@@ -99,6 +136,7 @@ mixin _$LoginEmailController on _LoginEmailController, Store {
     return '''
 fieldEmail: ${fieldEmail},
 errorEmail: ${errorEmail},
+code: ${code},
 verifyFields: ${verifyFields}
     ''';
   }

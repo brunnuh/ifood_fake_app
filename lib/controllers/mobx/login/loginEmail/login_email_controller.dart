@@ -9,12 +9,17 @@ abstract class _LoginEmailController with Store {
   // email
 
   // Observers
+
   @observable
   String fieldEmail = "";
 
   @observable
   bool errorEmail = false;
 
+  // code
+
+  @observable
+  String code = "";
   // Action
 
   @action
@@ -28,12 +33,24 @@ abstract class _LoginEmailController with Store {
 
   @action
   void validEmail(){
-    errorEmail = !RegExp(
+
+    if(!RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(fieldEmail);
+        .hasMatch(fieldEmail)){
+      errorEmail = false;
+    }
   }
   //end email
+  // code
 
+  @action
+  void setCode(value) => code = value;
+
+  @action
+  void clearCode(TextEditingController controller){
+    code = "";
+    controller.clear();
+  }
 // all
 
   @action

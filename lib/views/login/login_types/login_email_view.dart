@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:ifood_fake_app/controllers/mobx/login/loginEmail/login_email_controller.dart';
+import 'package:ifood_fake_app/models/user.dart';
+import 'package:ifood_fake_app/repositories/Api/api.dart';
 
 
 class LoginEmailView extends StatefulWidget {
@@ -11,7 +13,7 @@ class LoginEmailView extends StatefulWidget {
 class _LoginEmailViewState extends State<LoginEmailView> {
 
   TextEditingController _emailController = TextEditingController();
-
+  Api _api = Api();
 
 
   @override
@@ -94,14 +96,16 @@ class _LoginEmailViewState extends State<LoginEmailView> {
                 ),),
               ),
             ),
-            onTap:  (){
+            onTap:  () async {
               //validar campos
               LoginEmailSingletonController.validEmail(); // modificar para chamar um metodo que verifica todos os campos
               LoginEmailSingletonController.verifyFields;
 
               // se campos estiverem ok prossiga
-              if(LoginEmailSingletonController.errorEmail){
-                print("erro");
+              if(!LoginEmailSingletonController.errorEmail){
+                User user  = User(email: LoginEmailSingletonController.fieldEmail); //jogar isso pro controler
+                _api.verifyCode(user);
+                Navigator.pushNamed(context, "verifycodeview");
               }else{
                 print("partiuc");
               }

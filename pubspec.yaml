@@ -30,6 +30,8 @@ dependencies:
   cupertino_icons: ^1.0.0
   mobx: ^1.2.0 #gerenciador de estado
   flutter_mobx: ^1.1.0 # gerenciador de estado
+  dio: ^3.0.10
+  pinput: ^0.2.6 # field code
 
 dev_dependencies:
   flutter_test:
