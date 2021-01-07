@@ -26,8 +26,8 @@ class HomeView extends StatelessWidget {
                        return  WidgetTextSelected(text: "Restaurantes", selected: HomeSingletonController.selectedView == 0 ? true : false,);
                      },
                    ),
-                   onTap: (){
-                      HomeSingletonController.nextView(0);
+                   onTap: () async {
+                      await HomeSingletonController.nextView(0);
                    },
                  ),
                   SizedBox(width: _width * 0.04,),

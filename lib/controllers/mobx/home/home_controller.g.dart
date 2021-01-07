@@ -31,18 +31,11 @@ mixin _$HomeController on _HomeController, Store {
     });
   }
 
-  final _$_HomeControllerActionController =
-      ActionController(name: '_HomeController');
+  final _$nextViewAsyncAction = AsyncAction('_HomeController.nextView');
 
   @override
-  void nextView(int value) {
-    final _$actionInfo = _$_HomeControllerActionController.startAction(
-        name: '_HomeController.nextView');
-    try {
-      return super.nextView(value);
-    } finally {
-      _$_HomeControllerActionController.endAction(_$actionInfo);
-    }
+  Future<void> nextView(int value) {
+    return _$nextViewAsyncAction.run(() => super.nextView(value));
   }
 
   @override

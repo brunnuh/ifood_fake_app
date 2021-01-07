@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:ifood_fake_app/controllers/mobx/bottombar/bottombar_controller.dart';
 import 'package:ifood_fake_app/controllers/mobx/home/home_controller.dart';
-import 'package:ifood_fake_app/views/home/components/widget_product_box.dart';
+import 'package:ifood_fake_app/views/home/components/widget_restaurant_box.dart';
 class RestaurantsView extends StatefulWidget {
 
 
@@ -88,21 +88,32 @@ class _RestaurantsViewState extends State<RestaurantsView> {
           child: Text("Lojas", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),),
         ),
         SizedBox(height: _height * 0.02,),
-        SizedBox(
-          //height: 200,
-          child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            primary: false,
-            itemCount: 20,
-            itemBuilder: (context, index){
-              return Container(
-                  margin: EdgeInsets.only(left: _width * 0.03, bottom: 20),
-                  child: WidgetProductBox()
-              );
-            },
-          ),
-        )
+        Observer(
+          builder: (_){
+            return SizedBox(
+              //height: 200,
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                primary: false,
+                itemCount: HomeSingletonController.restaurants.length,
+                itemBuilder: (context, index){
+                  return Container(
+                      margin: EdgeInsets.only(left: _width * 0.03, bottom: 20),
+                      child: WidgetRestaurantBox(
+                        image: HomeSingletonController.restaurants[index].image,
+                        name: HomeSingletonController.restaurants[index].name,
+                        note: HomeSingletonController.restaurants[index].note,
+                        category: HomeSingletonController.restaurants[index].categoryRestaurant.name,
+                        statusOperating: HomeSingletonController.restaurants[index].statusOperating,
+                      )
+                  );
+                },
+              ),
+            );
+          },
+        ),
+        SizedBox(height: 200,),
       ],
     );
   }
