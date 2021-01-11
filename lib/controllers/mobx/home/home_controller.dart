@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:ifood_fake_app/models/restaurant.dart';
 import 'package:ifood_fake_app/repositories/Api/api.dart';
 import 'package:mobx/mobx.dart';
@@ -10,11 +11,22 @@ abstract class _HomeController with Store{
 
  Api _api = Api();
 
+ List categoriesRestaurantsItens = [
+   ["Brasileira", Colors.amber.shade300, "assets/brasileira.png", 80.0],
+   ["Saudável", Colors.green.shade600, "assets/saudavel.png", 75.0],
+   ["Marmita", Colors.red, "assets/marmita.png", 100.0],
+   ["Lanche", Colors.red, "assets/hamburguer.png", 80.0],
+   ["Doces & Bolos", Colors.pinkAccent, "assets/docesbolos.png", 50.0],
+   ["Japonesa", Colors.pinkAccent, "assets/japonesa.png", 100.0],
+   ["Pizza", Colors.deepPurpleAccent, "assets/pizza.png", 70.0]
+ ];
+
  // Observers
  @observable
   int selectedView = 0; // 0 - restaurants , 1 - merkats
 
  ObservableList<Restaurant> restaurants = ObservableList<Restaurant>();
+
 
  // Action
  @action

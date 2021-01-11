@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:ifood_fake_app/controllers/mobx/bottombar/bottombar_controller.dart';
 import 'package:ifood_fake_app/controllers/mobx/home/home_controller.dart';
+import 'package:ifood_fake_app/views/home/components/widget_categories_restaurants.dart';
 import 'package:ifood_fake_app/views/home/components/widget_restaurant_box.dart';
 class RestaurantsView extends StatefulWidget {
 
@@ -43,20 +44,13 @@ class _RestaurantsViewState extends State<RestaurantsView> {
         ),
         SizedBox(height: 10,),
         SizedBox(
-          height: 90,
+          height: 150,
           child: ListView.builder( // modificar para widgets
-            itemCount: 10,
-
+            itemCount: HomeSingletonController.categoriesRestaurantsItens.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index){
-              return Container(
-                margin: EdgeInsets.only(left: 10),
-                width: 100,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.deepPurple,
-                ),
-              );
+              List data = HomeSingletonController.categoriesRestaurantsItens[index];
+              return WidgetCategoriesRestaurants(name: data[0], color: data[1], image: data[2], width: double.parse(data[3].toString()),);
             },
           ),
         ),
