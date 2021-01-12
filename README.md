@@ -1,6 +1,6 @@
 # ifood_fake_app
-
-A new Flutter application.
+## Screens ready
+    ![alt text](assets/screen_home.png)
 
 ## Getting Started
 
