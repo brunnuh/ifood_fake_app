@@ -1,6 +1,6 @@
 # ifood_fake_app
 ## Screens ready
-    ![alt text](assets/screen_home.png)
+![alt text](assets/screen_home.png?raw=true)
 
 ## Getting Started
 
