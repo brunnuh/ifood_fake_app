@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:ifood_fake_app/controllers/mobx/category_restaurant/category_restaurant_controller.dart';
+import 'package:ifood_fake_app/controllers/mobx/home/home_controller.dart';
 import 'package:ifood_fake_app/controllers/mobx/login/loginEmail/login_email_controller.dart';
 import 'package:ifood_fake_app/models/restaurant.dart';
 import 'package:ifood_fake_app/models/user.dart';
@@ -44,19 +46,35 @@ class Api extends Dates {
   * Restaurant
  */
 
-  Future<List<Restaurant>> getRestaurant() async {
-      List<Restaurant> restaurants = [];
+  Future<void> getRestaurant() async { // all restaurants
+      //List<Restaurant> restaurants = [];
       try {
         Response response = await _dio.get(url + "/restaurants");
         if(response.statusCode == 200){
+          HomeSingletonController.restaurants.clear();
           response.data["data"]["data"].forEach((element) {
-            restaurants.add(Restaurant.fromJson(element));
+            HomeSingletonController.restaurants.add(Restaurant.fromJson(element));
           });
         }
-        return restaurants;
+        //return restaurants;
       } on DioError catch (e) {
         print(e.response);
-        return restaurants;
+        //return restaurants;
       }
     }
+
+    Future getCategoryRestaurant(id) async { // by category
+      List<Restaurant> restaurants = [];
+      try {
+        Response response = await _dio.post(url + "/categories_restaurant/${id}");
+        if(response.statusCode == 200){
+          response.data["data"].forEach((element){
+            CRSingletonController.CRlist.add(Restaurant.fromJson(element));
+          });
+        }
+      } on DioError catch (e) {
+        print(e.response);
+      }
+    }
+
 }

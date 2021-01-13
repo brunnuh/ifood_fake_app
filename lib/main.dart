@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme().defaultTheme(),
       onGenerateRoute: (settings){
-        final args = settings.arguments;
+
         return routes(settings);
       },
       initialRoute: 'bottombarview',

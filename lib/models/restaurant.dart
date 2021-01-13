@@ -16,7 +16,8 @@ class Restaurant{
         this.phone,
         this.statusOperating,
         this.note,
-        this.categoryRestaurant});
+        this.categoryRestaurant
+      });
 
   Restaurant.fromJson(Map<String, dynamic> json) {
     image = json['image'];

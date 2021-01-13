@@ -1,10 +1,14 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:ifood_fake_app/controllers/mobx/bottombar/bottombar_controller.dart';
+import 'package:ifood_fake_app/controllers/mobx/category_restaurant/category_restaurant_controller.dart';
 import 'package:ifood_fake_app/controllers/mobx/home/home_controller.dart';
+import 'package:ifood_fake_app/views/global/widget_restaurant_box.dart';
 import 'package:ifood_fake_app/views/home/components/widget_categories_restaurants.dart';
-import 'package:ifood_fake_app/views/home/components/widget_restaurant_box.dart';
+
+
+
 class RestaurantsView extends StatefulWidget {
 
 
@@ -50,7 +54,14 @@ class _RestaurantsViewState extends State<RestaurantsView> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index){
               List data = HomeSingletonController.categoriesRestaurantsItens[index];
-              return WidgetCategoriesRestaurants(name: data[0], color: data[1], image: data[2], width: double.parse(data[3].toString()),);
+              return GestureDetector(
+                child: WidgetCategoriesRestaurants(name: data[0], color: data[1], image: data[2], width: double.parse(data[3].toString()),),
+                onTap: (){
+                  CRSingletonController.CRlist.clear();
+                  CRSingletonController.get(data[4]);
+                  Navigator.pushNamed(context, "categoryrestaurantview", arguments: [data[0]]);
+                },
+              );
             },
           ),
         ),
@@ -112,4 +123,3 @@ class _RestaurantsViewState extends State<RestaurantsView> {
     );
   }
 }
-
