@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifood_fake_app/routes/routes.dart';
 import 'package:ifood_fake_app/theme/app_theme.dart';
+import 'package:ifood_fake_app/views/restaurant/restaurant_view.dart';
 
 
 void main() {
@@ -16,11 +17,12 @@ class MyApp extends StatelessWidget {
       title: 'Ifood fake ',
       debugShowCheckedModeBanner: false,
       theme: AppTheme().defaultTheme(),
-      onGenerateRoute: (settings){
+      home: RestaurantView(),
+      /*onGenerateRoute: (settings){
 
         return routes(settings);
       },
-      initialRoute: 'bottombarview',
+      initialRoute: 'bottombarview',*/
     );
   }
 }

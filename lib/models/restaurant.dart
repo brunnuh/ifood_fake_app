@@ -3,6 +3,7 @@ import 'package:ifood_fake_app/repositories/contracts/dates.dart';
 import 'category_restaurant.dart';
 
 class Restaurant{
+  int id;
   String image;
   String name;
   String phone;
@@ -11,7 +12,8 @@ class Restaurant{
   CategoryRestaurant categoryRestaurant;
 
   Restaurant(
-      {this.image,
+      { this.id,
+        this.image,
         this.name,
         this.phone,
         this.statusOperating,
@@ -20,6 +22,7 @@ class Restaurant{
       });
 
   Restaurant.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
     image = json['image'];
     name = json['name'];
     phone = json['phone'];
@@ -32,6 +35,7 @@ class Restaurant{
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data["id"] = this.id;
     data['image'] = this.image;
     data['name'] = this.name;
     data['phone'] = this.phone;
